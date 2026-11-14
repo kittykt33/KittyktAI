@@ -5,7 +5,7 @@ import android.speech.*; import android.speech.tts.TextToSpeech; import android.
 import androidx.biometric.BiometricManager; import androidx.biometric.BiometricPrompt; import androidx.core.content.ContextCompat;
 import java.util.*; import java.util.concurrent.Executor;
 
-public class MainActivity extends Activity {
+public class MainActivity extends androidx.fragment.app.FragmentActivity {
  private LinearLayout messages; private EditText input; private TextToSpeech tts; private SpeechRecognizer recognizer; private MemoryStore memory; private AssistantEngine engine; private boolean unlocked=false;
  private final int REQ=44;
  @Override public void onCreate(Bundle b){super.onCreate(b); memory=new MemoryStore(this); engine=new AssistantEngine(this,memory); buildUi(); tts=new TextToSpeech(this,status->{if(status==TextToSpeech.SUCCESS){int r=tts.setLanguage(new Locale("ta","LK")); if(r==TextToSpeech.LANG_MISSING_DATA||r==TextToSpeech.LANG_NOT_SUPPORTED) tts.setLanguage(new Locale("ta","IN"));}}); requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO,Manifest.permission.POST_NOTIFICATIONS,Manifest.permission.CAMERA},REQ); add("Kitty","வணக்கம்! நான் Kitty. இணையமில்லாமலும் அடிப்படை கட்டளைகள் மற்றும் சேமித்த நினைவுகளுடன் உதவுவேன்."); }
